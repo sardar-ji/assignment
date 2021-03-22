@@ -1,10 +1,12 @@
-There are three scripts in this folder: 
+**There are three scripts in this folder: 
+**
 1) get_svc_status.py
 2) webservice.py
 3) coldiff.py
 ------------------------------
 
-Pre-requisites:
+**Pre-requisites:
+**
 
 Make sure panda, flask and Elasticsearch is installed on the machine. You can use pip3 to install these.
 
@@ -64,7 +66,8 @@ Final.csv will be generated.
 
 ---------------------------------------------------------------------------------------
 
-Note: README.md file for ansible is in its folder. 
+**Note: README.md file for ansible is in its folder. 
+**
 
 Thanks!!
 
