@@ -5,6 +5,7 @@ There are three scripts in this folder:
 ------------------------------
 
 Pre-requisites:
+
 Make sure panda, flask and Elasticsearch is installed on the machine. You can use pip3 to install these.
 
 ---------------------
@@ -20,9 +21,9 @@ Sample JSON Payload
    "service_status":"	",
    "host_name":"host1"
 }
-It writes this JSON object to a file named {serviceName}-status-{@timestamp}.json
----------------------------------------------------------------------------------------
+It wrrite tthis JSOON object to a file named {serviceName}-status-{@timestamp}.json
 
+-------------------------------------------------------------------------
 
 ----------------
 2) webservice.py 
