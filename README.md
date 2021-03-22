@@ -53,6 +53,7 @@ http://127.0.0.1:5000/healthcheck/httpd
 ---------------
 
 This script accepts the csv file at run time and generate a new CSV file that only includes properties sold for less than the average price / foot.
+Sample CSV file is provided in this folder.
 If csv file and this script is present at the same location then give the csv file name only otherwise give the absolute path of the csv.
 Make sure panda is installed.
 Eliminating the rows, which has sq__ft value zero. since denominator can't be zero while division.
