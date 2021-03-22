@@ -29,6 +29,7 @@ First run
 2) Copy your SSH public key to the target or pass the key in the inventory file:
        ssh-copy-id -i ~/.ssh/mykey user@target_host
 3) Update the nexus URL from where the rpms should be installed and add corporate proxy as needed in "assignment-ansible/inventories/assignment/group_vars/all.yml"
+4) Also make sure to create the soft link for roles directory inside playbooks directory
 
 Playbook:
 ---------
