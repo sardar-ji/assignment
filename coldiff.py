@@ -46,4 +46,4 @@ column_order=['street','city','zip','state','beds','baths','sq__ft','type','sale
 df_data[column_order].to_csv('Final.csv',index=False)
 print("After parsing, no. of record  is: "+ str(df_data.shape[0]) )
 print("Completed!! 'Final.csv' is created at "+os.getcwd()+" with new column named 'avg_sqft'")
-print("###################################################################################################")
+print("####################################################################################################")
