@@ -1,0 +1,13 @@
+[assignment:children]
+httpd_servers
+rabbitmq_servers
+postgreSQL_servers
+
+[httpd_servers]
+httpd-01 ansible_host=10.83.177.146 ansible_ssh_private_key_file=~/Downloads/harpr-mac_key.pem
+
+[rabbitmq_servers]
+rabbitmq-01 ansible_host=10.83.177.147 ansible_ssh_private_key_file=~/Downloads/harpr-mac_key.pem
+
+[postgreSQL_servers]
+postgreSQL-01 ansible_host=10.83.177.148 ansible_ssh_private_key_file=~/Downloads/harpr-mac_key.pem

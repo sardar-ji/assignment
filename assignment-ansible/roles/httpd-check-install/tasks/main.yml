@@ -1,0 +1,15 @@
+- name: Install httpd if not present
+  become: yes
+  yum:
+    name: "httpd"
+#Commented below lines in case not using client repo
+#    disablerepo: "*"
+#    enablerepo: "{{ client_repo }}"
+    state: latest
+  when: action == "verify_install"
+
+- name: ensure httpd is running
+  service:
+    name: httpd 
+    state: started
+  when: action == "verify_install"

@@ -1,0 +1,5 @@
+http_proxy_protocol: "http"
+http_proxy_port: 80
+https_proxy_protocol: "https"
+https_proxy_port: 443
+no_proxy: "localhost,127.*,[::1]"

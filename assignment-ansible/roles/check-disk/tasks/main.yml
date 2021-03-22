@@ -1,0 +1,23 @@
+---
+- name: Ensure that free space on the volume is greater than 20%
+  assert:
+    that:
+      - mount.size_available > mount.size_total|float * 0.20
+    msg: Disk space has reached 80% threshold
+  vars:
+    mount: "{{ ansible_mounts | selectattr('mount','equalto',item.mount) | list | first }}"
+  with_items:
+    - "{{ ansible_mounts }}"
+  register: disk_free
+  when: action == "check-disk"
+
+
+- name: Notifying the user about the disk usage
+  mail:
+    host: localhost
+    port: 25
+    to: 'abc@gmail.com'
+    subject: Disk-Usage report
+    body: '{{ inventory_hostname }} is running low on disk space. Currently {{ disk_free.results[0].item.size_available }}MB available.'
+    secure: always
+  when: action == "check-disk" and disk_free.results[0].item.size_available < 20

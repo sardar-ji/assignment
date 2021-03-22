@@ -1,0 +1,7 @@
+thirdparty_repo: thirdparty
+client_repo_url: internalrepo.com/nexus/content/repositories
+
+# Usually we only need the proxy server for the "external" repositories (CentOS, Java, MariaDB, etc.),
+# because most of our environments are internal.
+# Set this value to true for any inventories that access through the proxy
+proxy_mint_repos: false

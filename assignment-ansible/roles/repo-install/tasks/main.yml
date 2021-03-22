@@ -1,0 +1,48 @@
+---
+- name: Add client repositories into the client YUM repo file
+  yum_repository:
+    name: "{{ client_repo }}"
+    description: Client Repo for client builds
+    baseurl: "https://{{ client_repo_user }}:{{ client_repo_password }}@{{ client_repo_url }}/{{ client_repo }}"
+    file: client
+    enabled: yes
+    gpgcheck: no
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+    metadata_expire: 30
+    sslverify: no
+    proxy: "{{ https_proxy }}"
+
+- name: Add Client 3rd Party repositories into the client YUM repo file
+  yum_repository:
+    name: "{{ thirdparty_repo }}"
+    description: Client Repo for third-party applications and dependencies
+    baseurl: "https://{{ client_repo_user }}:{{ client_repo_password }}@{{client_repo_url}}/{{ thirdparty_repo }}"
+    file: client
+    enabled: yes
+    gpgcheck: no
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+    metadata_expire: 30
+    sslverify: no
+    proxy: "{{ https_proxy }}"
+
+- name: Add erlang-solutions repository
+  yum_repository:
+    name: erlang
+    description: erlang
+    baseurl: "https://packages.erlang-solutions.com/rpm/centos/{{ansible_distribution_major_version}}/x86_64/"
+    file: client
+    enabled: yes
+    gpgcheck: no
+    sslverify: no
+    proxy: "{{https_proxy}}"
+
+- name: Add EPEL repository
+  yum_repository:
+    name: "epel"
+    description: EPEL Repo for third-party applications and dependencies
+    baseurl: "https://mirror.csclub.uwaterloo.ca/fedora/epel/{{ ansible_distribution_major_version }}/x86_64/"
+    file: client
+    enabled: yes
+    gpgcheck: no
+    sslverify: no
+    proxy: "{{https_proxy}}"

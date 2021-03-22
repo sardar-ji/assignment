@@ -1,0 +1,44 @@
+---
+#Inspecting the installed services on all the servers
+- hosts: assignment
+  strategy: free
+  gather_facts: yes
+  tasks:
+    - name: Inspect installed services
+      service_facts:
+
+# Setting up the basic coprorate proxy and yum repos. I have commented the block as I am running from my local MAC.
+# - hosts: assignment
+#   strategy: free
+#   tags: base-setup
+#   roles:
+#     - proxy-configure
+#     - repo-install
+
+#Checking the disk space for all servers and sending email alert in case the utilization is above 80%
+- hosts: assignment
+  vars:
+    action: "verify-install"
+  strategy: free
+  tags: disk-check
+  roles:
+    - check-disk
+
+#Checking the services status using internal URL api endpoint.
+- hosts: rabbitmq_servers
+  vars:
+    action: "verify-install"
+  strategy: free
+  tags: status-check
+  roles:
+    - check-status
+
+#Verifying if httpd is installed on httpd servers and installing it in case if it is not present
+- hosts: httpd_servers
+  vars:
+    action: "verify-install"
+  strategy: free
+  tags: httpdinstall-check
+  roles:
+    - httpd-check-install
+

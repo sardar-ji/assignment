@@ -1,0 +1,30 @@
+- name: Set http_proxy in /etc/environment
+  lineinfile:
+    path: /etc/environment
+    regexp: '^export http_proxy='
+    line: "export http_proxy='{{ http_proxy_protocol }}://{{ http_proxy_host }}:{{ http_proxy_port }}'"
+    create: yes
+  when: "http_proxy_host is defined"
+
+- name: Set https_proxy in /etc/environment
+  lineinfile:
+    path: /etc/environment
+    regexp: '^export https_proxy='
+    line: "export https_proxy='{{ https_proxy_protocol }}://{{ https_proxy_host }}:{{ http_proxy_port }}'"
+    create: yes
+  when: "https_proxy_host is defined"
+
+- name: Set no_proxy in /etc/environment
+  lineinfile:
+    path: /etc/environment
+    regexp: '^export no_proxy='
+    line: "export no_proxy='{{ no_proxy }}'"
+    create: yes
+  when: "no_proxy is defined"
+
+- name: Set JAVA_TOOL_OPTIONS in /etc/environment
+  lineinfile:
+    path: /etc/environment
+    regexp: '^export JAVA_TOOL_OPTIONS='
+    line: "export JAVA_TOOL_OPTIONS='{% if http_proxy_host is defined %}-Dhttp.proxyHost={{ http_proxy_host }}{% endif %} -Dhttp.proxyPort={{ http_proxy_port }} -Dhttp.nonProxyHosts=\"{{ no_proxy | replace (',','|') }}\" {% if https_proxy_host is defined %}-Dhttps.proxyHost={{ https_proxy_host }}{% endif %} -Dhttps.proxyPort={{ https_proxy_port }}'"
+

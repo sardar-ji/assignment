@@ -1,0 +1,60 @@
+---
+- name: Check if rbcapp1 is up
+  uri:
+    url: "http://127.0.0.1:5000/healthcheck"
+    method: GET
+    return_content: yes
+    body_format: json
+    status_code: 200
+  register: rbcapp1_api_status_output
+  when: action == "check-status"
+
+- debug:
+    msg: "{{ rbcapp1_api_status_output }}"
+
+- name: Display rbcapp1 status to user if it is down
+  shell: echo "OMG rbacapp1 is DOWN!"
+  when: action == "check-status" and "rbcapp1_api_status_output.stdout" == "DOWN"
+
+
+- name: Check if httpd is up
+  uri:
+    url: "http://127.0.0.1:5000/healthcheck/httpd"
+    method: GET
+    return_content: yes
+    body_format: json
+    status_code: 200
+  register: httpd_api_status_output
+  when: action == "check-status"
+
+- name: Display rbcapp1 status to user if it is down
+  shell: echo "OMG httpd is DOWN!"
+  when: action == "check-status" and "httpd_api_status_output.json.status" == "DOWN"
+
+- name: Check if rabbitmq is up
+  uri:
+    url: "http://127.0.0.1:5000/healthcheck/rabbitmq"
+    method: GET
+    return_content: yes
+    body_format: json
+    status_code: 200
+  register: rabbitmq_api_status_output
+  when: action == "check-status"
+
+- name: Display rbcapp1 status to user if it is down
+  shell: echo "OMG rabbitmq is DOWN!"
+  when: action == "check-status" and "rabbitmq_api_status_output.json.status" == "DOWN"
+
+- name: Check if postgresql is up
+  uri:
+    url: "http://127.0.0.1:5000/healthcheck/postgresql"
+    method: GET
+    return_content: yes
+    body_format: json
+    status_code: 200
+  register: postgresql_api_status_output
+  when: action == "check-status"
+
+- name: Display rbcapp1 status to user if it is down
+  shell: echo "OMG Postgresql is DOWN!"
+  when: action == "check-status" and "postgresql_api_status_output.json.status" == "DOWN"
