@@ -62,3 +62,8 @@ Compare each value obtained with mean value i.e < mean
 Final.csv will be generated.
 
 ---------------------------------------------------------------------------------------
+
+Note: README.md file for ansible is in its folder. 
+
+Thanks!!
+
