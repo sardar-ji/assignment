@@ -47,7 +47,7 @@ def insert_data():
 @app.route('/healthcheck/<svc_name>', methods=['GET'])
 def get_httpd(svc_name):
     query = svc_name
-    result = es.search(index="svc_index", doc_type="doc", body={"query": {"match": {"service_name": query}}}, size=20)
+    result = es.search(index="svc_index", doc_type="doc", sort='_id:asc', body={"query": {"match": {"service_name": query}}}, size=1)
     for doc in result['hits']['hits']:
          print("%s) %s %s %s" %  (doc['_id'], doc['_source']['service_name'], doc['_source']['service_status'],doc['_source']['host_name']))
 
