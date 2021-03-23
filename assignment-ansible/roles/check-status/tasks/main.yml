@@ -12,9 +12,11 @@
 - debug:
     msg: "{{ rbcapp1_api_status_output }}"
 
-- name: Display rbcapp1 status to user if it is down
-  shell: echo "OMG rbacapp1 is DOWN!"
-  when: action == "check-status" and "rbcapp1_api_status_output.stdout" == "DOWN"
+- name: Fail if rbcapp1 is down 
+  when: action == "check-status" 
+  
+  fail:
+  when: "'UP' not in rbcapp1_api_status_output.content"
 
 
 - name: Check if httpd is up
@@ -27,9 +29,11 @@
   register: httpd_api_status_output
   when: action == "check-status"
 
-- name: Display rbcapp1 status to user if it is down
-  shell: echo "OMG httpd is DOWN!"
-  when: action == "check-status" and "httpd_api_status_output.json.status" == "DOWN"
+- name: Fail if httpd is down 
+  when: action == "check-status" 
+ 
+  fail:
+  when: "'UP' not in httpd_api_status_output.content"
 
 - name: Check if rabbitmq is up
   uri:
@@ -41,9 +45,12 @@
   register: rabbitmq_api_status_output
   when: action == "check-status"
 
-- name: Display rbcapp1 status to user if it is down
-  shell: echo "OMG rabbitmq is DOWN!"
-  when: action == "check-status" and "rabbitmq_api_status_output.json.status" == "DOWN"
+- name: Fail if rabbitmq is down 
+  when: action == "check-status" 
+  
+  fail:
+  when: "'UP' not in rabbitmq_api_status_output.content"
+
 
 - name: Check if postgresql is up
   uri:
@@ -55,6 +62,9 @@
   register: postgresql_api_status_output
   when: action == "check-status"
 
-- name: Display rbcapp1 status to user if it is down
-  shell: echo "OMG Postgresql is DOWN!"
-  when: action == "check-status" and "postgresql_api_status_output.json.status" == "DOWN"
+- name: Fail if postgreSQL is down 
+  when: action == "check-status" 
+  
+  fail:
+  when: "'UP' not in postgresql_api_status_outpu.content"
+
