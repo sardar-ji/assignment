@@ -29,19 +29,19 @@ def main():
     for svc_name in services_name:
         #if condition call the function and get the status.    
         if check_service_status(svc_name) == 0:
+            ts = time.time()
             up = {'host_name': "host1",
-                  'service_name': svc_name, 'service_status': 'UP'}
+                  'service_name': svc_name, 'service_status': 'UP', 'time': ts}
             jsonString = json.dumps(up, indent=4)
-            ts = str(time.time())
-            name = svc_name + '-status-' + ts + '.json'
+            name = svc_name + '-status-' + str(ts) + '.json'
             with open(name, 'w') as outfile:
                 json.dump(up, outfile, indent=4)
         else:
+            ts = time.time()            
             down = {'service_name': svc_name, 'service_status': 'DOWN',
-                    'host_name': "host1"}
+                    'host_name': "host1", 'time': ts}
             jsonString = json.dumps(down, indent=4)
-            ts = str(time.time())
-            name = svc_name + '-status-' + ts + '.json'
+            name = svc_name + '-status-' + str(ts) + '.json'
             with open(name, 'w') as outfile:
                 json.dump(down, outfile, indent=4)
 
