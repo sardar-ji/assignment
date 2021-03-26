@@ -67,4 +67,27 @@
   
   fail:
   when: "'UP' not in postgresql_api_status_outpu.content"
+  
+  
+#Use below code if all the service is installed on single server
+
+#- name: Check if rbcapp1 is up
+#  uri:
+#    url: "http://127.0.0.1:5000/healthcheck/{{ item }}"
+#    method: GET
+#    return_content: yes
+#    body_format: json
+#    status_code: 200
+#  register: this
+#  failed_when: "'UP' not in this.content"
+#  loop:
+#    - rabbitmq"
+#    - httpd"
+#    - postgresql"
+#  when: action == "check-status"
+
+#- debug:
+#    msg: "this.content"
+~                                                                                                                                                      
+
 
