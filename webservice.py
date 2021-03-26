@@ -58,7 +58,7 @@ def get_httpd(svc_name):
 
 @app.route('/healthcheck', methods=['GET'])
 def get_hc():
-    result = es.search(index="svc_index", doc_type="doc", body={"query": {"match_all": {}}})
+    result = es.search(index="svc_index", doc_type="doc", body={"query": {"match_all": {}},"sort":{"time": {'order': 'desc', 'mode':'max'}}})
     for doc in result['hits']['hits']:
          print("%s) %s %s %s" %  (doc['_id'], doc['_source']['service_name'], doc['_source']['service_status'],doc['_source']['host_name']))
 
