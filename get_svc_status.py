@@ -31,7 +31,6 @@ def main():
             ts = time.time()
             up = {'host_name': "host1",
                   'service_name': svc_name, 'service_status': 'UP', 'time': ts}
-            jsonString = json.dumps(up, indent=4)
             name = svc_name + '-status-' + str(ts) + '.json'
             with open(name, 'w') as outfile:
                 json.dump(up, outfile, indent=4)
@@ -39,7 +38,6 @@ def main():
             ts = time.time()            
             down = {'service_name': svc_name, 'service_status': 'DOWN',
                     'host_name': "host1", 'time': ts}
-            jsonString = json.dumps(down, indent=4)
             name = svc_name + '-status-' + str(ts) + '.json'
             with open(name, 'w') as outfile:
                 json.dump(down, outfile, indent=4)
