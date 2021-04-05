@@ -44,9 +44,9 @@ Make sure to run the POST /add first. It will create index and POST json to ES.
 
 
 Sample calls
-http://127.0.0.1:5000/add
-http://127.0.0.1:5000/healthcheck
-http://127.0.0.1:5000/healthcheck/httpd
+curl -X POST http://127.0.0.1:5000/add
+curl -X GET http://127.0.0.1:5000/healthcheck
+curl -X GET http://127.0.0.1:5000/healthcheck/httpd
 
 ---------------------------------------------------------------------------------------
 
